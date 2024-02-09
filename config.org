@@ -393,5 +393,7 @@ Everyone must know, of course.
 (use-package! elcord
   :commands elcord-mode
   :config
-  (setq elcord-use-major-mode-as-main-icon t))
+  (setq elcord-use-major-mode-as-main-icon t)
+  (setq elcord-icon-base "https://raw.githubusercontent.com/jishnusen/emacs-config/main/misc/elcord-icons/"))
+
 #+end_src
