@@ -5,6 +5,7 @@
   :pin "e92b5cffa4e87c221c24f3e72ae33959e1ec2b68")
 (package! laas :pin "a00f0aba237b85b3e5fd60cf84de5759d1bf5d48")
 (package! elcord :pin "d0c9ace493d088bc70f7422705ff27dfcf162cca")
+(package! catppuccin-theme :pin "1e9bdb0c19bf13c27a32b1adeabcace45fcbfd15")
 
 ;; (package! org :recipe
 ;;   (:host nil :repo "https://git.tecosaur.net/mirrors/org-mode.git" :remote "mirror" :fork
