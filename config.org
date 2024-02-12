@@ -29,7 +29,7 @@ you run ~emacs --debug-init~
 We start with setting doom-builtin theme modifiers. These propagate to Emacs variables elsewhere.
 #+begin_src emacs-lisp
 ;; -*- lexical-binding: t -*-
-(setq doom-theme 'doom-earl-grey
+(setq doom-theme 'doom-one
       doom-font (font-spec :family "Iosevka" :size (if IS-MAC 14 16)))
 #+end_src
 
@@ -159,8 +159,8 @@ directory.
   (aas-set-snippets 'laas-mode
     :cond (lambda () (not (laas-mathp)))
     "dm" (insnip "\\[\n$0\n\\]")
-    "aln" (insnip "\\begin{align*}\n`%`$0\n\\end{align*}")
-    "pf" (insnip "\\begin{proof}\n`%`$0\n\\end{proof}")
+    ;; "aln" (insnip "\\begin{align*}\n`%`$0\n\\end{align*}")
+    ;; "pf" (insnip "\\begin{proof}\n`%`$0\n\\end{proof}")
     )
   (aas-set-snippets 'laas-mode
     :cond (lambda () (laas-mathp))
