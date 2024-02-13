@@ -45,7 +45,7 @@
        (popup +defaults)   ; tame sudden yet inevitable temporary windows
        ;;tabs              ; a tab bar for Emacs
        ;;treemacs          ; a project drawer, like neotree but cooler
-       ;;unicode           ; extended unicode support for various languages
+       unicode           ; extended unicode support for various languages
        (vc-gutter +pretty) ; vcs diff in the fringe
        vi-tilde-fringe   ; fringe tildes to mark beyond EOB
        ;;window-select     ; visually switch windows
@@ -160,6 +160,7 @@
         ;;+hugo                     ; use Emacs for hugo blogging
         ;; +noter                      ; enhanced PDF notetaking
         ;;+jupyter                    ; ipython/jupyter support for babel
+        +journal
         +pandoc                     ; export-with-pandoc support
         +gnuplot)                   ; who doesn't like pretty pictures
         ;;+pomodoro                 ; be fruitful with the tomato technique

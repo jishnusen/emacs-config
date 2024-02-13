@@ -30,7 +30,8 @@ We start with setting doom-builtin theme modifiers. These propagate to Emacs var
 #+begin_src emacs-lisp
 ;; -*- lexical-binding: t -*-
 (setq doom-theme 'doom-earl-grey
-      doom-font (font-spec :family "Iosevka" :size (if IS-MAC 14 16)))
+      doom-font (font-spec :family "Iosevka" :size (if IS-MAC 14 16))
+      doom-unicode-font (font-spec :family "Iosevka" :size (if IS-MAC 14 16)))
 #+end_src
 
 And startup options/hacks. These are required and may be specific to my system.
