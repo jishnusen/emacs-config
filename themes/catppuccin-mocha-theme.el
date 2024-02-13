@@ -1,6 +1,7 @@
 ;;; catpuccin-mocha-theme.el -*- lexical-binding: t; no-byte-compile: t; -*-
 
 (require 'doom-themes)
+(require 'doom-one-theme)
 
 
 ;;
@@ -13,42 +14,7 @@
   "A dark theme inspired by Atom One Dark."
 
   ;; name        default   256           16
-  ((bg         '("#1e1e2e" "black"       "black"  ))
-   (fg         '("#cdd6f4" "#bfbfbf"     "brightwhite"  ))
-
-   ;; These are off-color variants of bg/fg, used primarily for `solaire-mode',
-   ;; but can also be useful as a basis for subtle highlights (e.g. for hl-line
-   ;; or region), especially when paired with the `doom-darken', `doom-lighten',
-   ;; and `doom-blend' helper functions.
-   (bg-alt     '("#181925" "black"       "black"        ))
-   (fg-alt     '("#bac2de" "#2d2d2d"     "white"        ))
-
-   ;; These should represent a spectrum from bg to fg, where base0 is a starker
-   ;; bg and base8 is a starker fg. For example, if bg is light grey and fg is
-   ;; dark grey, base0 should be white and base8 should be black.
-   (base0      '("#11111b" "black"       "black"        ))
-   (base1      '("#1e2030" "#1e1e1e"     "brightblack"  ))
-   (base2      '("#1e2030" "#2e2e2e"     "brightblack"  ))
-   (base3      '("#232634" "#262626"     "brightblack"  ))
-   (base4      '("#585b70" "#3f3f3f"     "brightblack"  ))
-   (base5      '("#6c7086" "#525252"     "brightblack"  ))
-   (base6      '("#7f849c" "#6b6b6b"     "brightblack"  ))
-   (base7      '("#9399b2" "#979797"     "brightblack"  ))
-   (base8      '("#a6adc8" "#dfdfdf"     "white"        ))
-
-   (grey       base4)
-   (red        '("#f38ba8" "#ff6655" "red"          ))
-   (orange     '("#fab387" "#dd8844" "brightred"    ))
-   (green      '("#a6e3a1" "#99bb66" "green"        ))
-   (teal       '("#94e2d5" "#44b9b1" "brightgreen"  ))
-   (yellow     '("#f9e2af" "#ECBE7B" "yellow"       ))
-   (blue       '("#89b4fa" "#51afef" "brightblue"   ))
-   (dark-blue  '("#b4befe" "#2257A0" "blue"         ))
-   (magenta    '("#cba6f7" "#c678dd" "brightmagenta"))
-   (violet     '("#cba6f7" "#a9a1e1" "magenta"      ))
-   (cyan       '("#89dceb" "#46D9FF" "brightcyan"   ))
-   (dark-cyan  '("#74c7ec" "#5699AF" "cyan"         ))
-   (rosewater '("#f5e0dc" nil nil))
+  ((rosewater '("#f5e0dc" nil nil))
    (flamingo '("#f2cdcd" nil nil))
    (pink '("#f5c2e7" nil nil))
    (mauve '("#cba6f7" nil nil))
@@ -75,13 +41,49 @@
    (mantle '("#181825" nil nil))
    (crust '("#11111b" nil nil))
 
+   (bg         '("#1e1e2e" "black"       "black"  ))
+   (fg         '("#cdd6f4" "#bfbfbf"     "brightwhite"  ))
+
+   ;; These are off-color variants of bg/fg, used primarily for `solaire-mode',
+   ;; but can also be useful as a basis for subtle highlights (e.g. for hl-line
+   ;; or region), especially when paired with the `doom-darken', `doom-lighten',
+   ;; and `doom-blend' helper functions.
+   (bg-alt     '("#181925" "black"       "black"        ))
+   (fg-alt     '("#bac2de" "#2d2d2d"     "white"        ))
+
+   ;; These should represent a spectrum from bg to fg, where base0 is a starker
+   ;; bg and base8 is a starker fg. For example, if bg is light grey and fg is
+   ;; dark grey, base0 should be white and base8 should be black.
+   (base0      crust)
+   (base1      '("#1e2030" "#1e1e1e"     "brightblack"  ))
+   (base2      '("#1e2030" "#2e2e2e"     "brightblack"  ))
+   (base3      '("#232634" "#262626"     "brightblack"  ))
+   (base4      surface2)
+   (base5      overlay0)
+   (base6      overlay1)
+   (base7      overlay2)
+   (base8      subtext0)
+
+   (grey       base4)
+   (red        red)
+   (orange     peach)
+   (green      green)
+   (teal       teal)
+   (yellow     yellow)
+   (blue       blue)
+   (dark-blue  lavender)
+   (magenta    mauve)
+   (violet     mauve)
+   (cyan       sky)
+   (dark-cyan  sapphire)
+
    ;; These are the "universal syntax classes" that doom-themes establishes.
    ;; These *must* be included in every doom themes, or your theme will throw an
    ;; error, as they are used in the base theme defined in doom-themes-base.
    (highlight      blue)
    (vertical-bar   mantle)
    (selection      dark-blue)
-   (builtin        magenta)
+   (builtin        yellow)
    (comments       overlay0)
    (doc-comments   overlay1)
    (constants      peach)
