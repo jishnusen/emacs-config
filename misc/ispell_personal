@@ -1,6 +1,7 @@
-personal_ws-1.1 en 28
+personal_ws-1.1 en 31
 antiderivative
 bezout
+bijection
 bijective
 chktex
 combinatorial
@@ -18,6 +19,7 @@ keybinds
 magit
 nilpotent
 nim
+preimage
 qubit
 qubits
 subring
@@ -25,5 +27,6 @@ surjection
 surjections
 surjective
 surjectivity
+unionset
 unital
 xetex

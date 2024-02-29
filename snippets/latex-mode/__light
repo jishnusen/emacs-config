@@ -1,5 +1,6 @@
 # -*- mode: snippet -*-
 # name: LaTeX template (light)
+# expand-env: ((yas-after-exit-snippet-hook (lambda () (setq TeX-engine 'xetex))))
 # --
 \documentclass[class=article, crop=false]{standalone}
 \input{../preamble_light}
