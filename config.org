@@ -29,13 +29,19 @@ you run ~emacs --debug-init~
 We start with setting doom-builtin theme modifiers. These propagate to Emacs variables elsewhere.
 #+begin_src emacs-lisp
 ;; -*- lexical-binding: t -*-
+
+(defun font-fallback (fonts)
+  (cond
+   ((not (car fonts)) nil)
+   ((member (car fonts) (font-family-list)) (car fonts))
+   (t (font-fallback (cdr fonts)))
+   ))
 (setq doom-theme 'doom-earl-grey
-      doom-font (font-spec :family "Iosevka" :size (if IS-MAC 14 16))
-      doom-unicode-font (font-spec :family "Iosevka" :size (if IS-MAC 14 16)))
+      doom-font (font-spec :family (font-fallback '("PragmataPro" "Iosevka")) :size (if IS-MAC 14 16))
+      doom-unicode-font (font-spec :family (font-fallback '("PragmataPro" "Iosevka"))))
 #+end_src
 
-And startup options/hacks. These are required and may be specific to my system.
-#+begin_src emacs-lisp
+And startup options/hacks. These are required and may be specific to my system. #+begin_src emacs-lisp
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 (setq shell-file-name (executable-find "bash")
       conda-env-home-directory (expand-file-name "~/miniconda3/")
@@ -126,12 +132,18 @@ I try to use magit to interface with git. But, since my dotfiles are cloned as a
   (push (cons "\\N" (cdr (assoc "\\mathbb{N}" prettify-symbols-alist))) prettify-symbols-alist)
   (push (cons "\\R" (cdr (assoc "\\mathbb{R}" prettify-symbols-alist))) prettify-symbols-alist)
   (push (cons "\\Q" (cdr (assoc "\\mathbb{Q}" prettify-symbols-alist))) prettify-symbols-alist)
+  (when (not (string= (font-get doom-font :family) "PragmataPro"))
+    (dotimes (l 26)
+      ;; mathcal -> bold-italic math script
+      (add-to-list 'prettify-symbols-alist (cons (concat "\\mathcal{" (byte-to-string (+ ?A l)) "}") (+ 120380 l))))
+    )
   (dotimes (l 26)
-    ;; mathcal -> bold italic starting from A
-    (add-to-list 'prettify-symbols-alist (cons (concat "\\mathcal{" (byte-to-string (+ ?A l)) "}") (+ 120380 l))))
-  (dotimes (l 26)
-    ;; mathcal -> bold italic starting from A
-    (add-to-list 'prettify-symbols-alist (cons (concat "\\mathscr{" (byte-to-string (+ ?A l)) "}") (+ 119860 l))))
+    ;; mathscr -> mathcal
+    (let* ((letter (byte-to-string (+ ?A l)))
+           (cal (concat "\\mathcal{" letter "}"))
+           (scr (concat "\\mathscr{" letter "}")))
+      (add-to-list 'prettify-symbols-alist (cons scr (cdr (assoc cal prettify-symbols-alist))))
+      ))
   (prettify-symbols-mode t)
   )
 
