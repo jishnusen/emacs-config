@@ -41,7 +41,8 @@ We start with setting doom-builtin theme modifiers. These propagate to Emacs var
       doom-unicode-font (font-spec :family (font-fallback '("PragmataPro" "Iosevka"))))
 #+end_src
 
-And startup options/hacks. These are required and may be specific to my system. #+begin_src emacs-lisp
+And startup options/hacks. These are required and may be specific to my system.
+#+begin_src emacs-lisp
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 (setq shell-file-name (executable-find "bash")
       conda-env-home-directory (expand-file-name "~/miniconda3/")
