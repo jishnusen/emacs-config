@@ -37,7 +37,8 @@ We start with setting doom-builtin theme modifiers. These propagate to Emacs var
    (t (font-fallback (cdr fonts)))
    ))
 (setq doom-theme 'doom-earl-grey
-      doom-font (font-spec :family (font-fallback '("PragmataPro" "Iosevka")) :size (if IS-MAC 14 16))
+      doom-font (font-spec :family (font-fallback '("PragmataPro" "Iosevka"))
+                           :size (if IS-MAC 14 18))
       doom-unicode-font (font-spec :family (font-fallback '("PragmataPro" "Iosevka"))))
 #+end_src
 
@@ -416,4 +417,14 @@ Everyone must know, of course.
   (setq elcord-use-major-mode-as-main-icon t)
   (setq elcord-icon-base "https://raw.githubusercontent.com/jishnusen/emacs-config/main/misc/elcord-icons/"))
 
+#+end_src
+
+*** perfect-margin
+#+begin_src emacs-lisp
+(use-package! perfect-margin
+  :config
+  (after! doom-modeline
+    (setq mode-line-right-align-edge 'right-fringe))
+  ;; (setq perfect-margin-only-set-left-margin t)
+  (perfect-margin-mode t))
 #+end_src
