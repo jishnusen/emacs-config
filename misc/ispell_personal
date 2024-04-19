@@ -1,4 +1,4 @@
-personal_ws-1.1 en 32
+personal_ws-1.1 en 37
 antiderivative
 bezout
 bijection
@@ -9,11 +9,14 @@ congruences
 contrapositive
 endian
 exponentiating
+factorizations
 homomorphism
 injective
 injectivity
 integrability
 integrable
+irreducibility
+irreducibles
 jishnu
 keybinds
 magit
@@ -23,10 +26,12 @@ preimage
 qubit
 qubits
 subring
+supremum
 surjection
 surjections
 surjective
 surjectivity
+trichotomous
 trichotomy
 unionset
 unital

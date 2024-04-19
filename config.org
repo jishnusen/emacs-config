@@ -36,12 +36,20 @@ We start with setting doom-builtin theme modifiers. These propagate to Emacs var
    ((member (car fonts) (font-family-list)) (car fonts))
    (t (font-fallback (cdr fonts)))
    ))
-(setq doom-theme 'doom-earl-grey
+(setq doom-theme 'modus-operandi
       doom-font (font-spec :family (font-fallback '("PragmataPro" "Iosevka"))
                            :size (if IS-MAC 14 18))
-      doom-unicode-font (font-spec :family (font-fallback '("PragmataPro" "Iosevka"))))
+      doom-unicode-font (font-spec :family (font-fallback '("PragmataPro" "Iosevka")))
+      doom-themes-enable-bold nil)
+(defvar after-load-theme-hook nil
+  "Hook run after a color theme is loaded using `load-theme'.")
+(defadvice load-theme (after run-after-load-theme-hook activate)
+  "Run `after-load-theme-hook'."
+  (run-hooks 'after-load-theme-hook))
+(add-hook 'after-load-theme-hook (lambda () (set-face-bold-p 'bold nil)))
 #+end_src
 
+* Startup Options
 And startup options/hacks. These are required and may be specific to my system.
 #+begin_src emacs-lisp
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
@@ -53,6 +61,7 @@ And startup options/hacks. These are required and may be specific to my system.
 (after! persp-mode
   (setq persp-emacsclient-init-frame-behaviour-override "main")
   )
+(put 'narrow-to-region 'disabled nil)
 #+end_src
 
 * Line numbers
@@ -81,6 +90,8 @@ These binds are specific to Evil modes (normal, insert, etc.)
 #+begin_src emacs-lisp
 ;; disable recording macros (i'm too dumb for this feature i think)
 (map! :n "q" nil)
+(map! :n "J" "5j")
+(map! :n "K" "5k")
 #+end_src
 
 * Package Configurations
@@ -124,28 +135,30 @@ I try to use magit to interface with git. But, since my dotfiles are cloned as a
       )
 (defun prettify-setup ()
   ;; pretty unicodisms that arent default
-  (push '("\\implies" . "⟹") tex--prettify-symbols-alist)
-  (push '("\\impliedby" . "⟸") tex--prettify-symbols-alist)
-  (push '("\\land" . "∧") tex--prettify-symbols-alist)
-  (push '("\\lor" . "∨") tex--prettify-symbols-alist)
-  (push '("\\dots" . 8230) tex--prettify-symbols-alist)
-  (push '("\\varnothing" . "∅") tex--prettify-symbols-alist)
-  (push (cons "\\textdegree{}" (cdr (assoc "\\textdegree" tex--prettify-symbols-alist))) tex--prettify-symbols-alist)
-  (push (cons "\\Z" (cdr (assoc "\\mathbb{Z}" tex--prettify-symbols-alist))) tex--prettify-symbols-alist)
-  (push (cons "\\N" (cdr (assoc "\\mathbb{N}" tex--prettify-symbols-alist))) tex--prettify-symbols-alist)
-  (push (cons "\\R" (cdr (assoc "\\mathbb{R}" tex--prettify-symbols-alist))) tex--prettify-symbols-alist)
-  (push (cons "\\Q" (cdr (assoc "\\mathbb{Q}" tex--prettify-symbols-alist))) tex--prettify-symbols-alist)
+  (push '("\\implies" . "⟹") prettify-symbols-alist)
+  (push '("\\impliedby" . "⟸") prettify-symbols-alist)
+  (push '("\\land" . "∧") prettify-symbols-alist)
+  (push '("\\lor" . "∨") prettify-symbols-alist)
+  (push '("\\dots" . 8230) prettify-symbols-alist)
+  (push '("\\varnothing" . "∅") prettify-symbols-alist)
+  (push '("\\upharpoonright" . "↾") prettify-symbols-alist)
+  (push '("\\mhyphen" . "-") prettify-symbols-alist)
+  (push (cons "\\textdegree{}" (cdr (assoc "\\textdegree" prettify-symbols-alist))) prettify-symbols-alist)
+  (push (cons "\\Z" (cdr (assoc "\\mathbb{Z}" prettify-symbols-alist))) prettify-symbols-alist)
+  (push (cons "\\N" (cdr (assoc "\\mathbb{N}" prettify-symbols-alist))) prettify-symbols-alist)
+  (push (cons "\\R" (cdr (assoc "\\mathbb{R}" prettify-symbols-alist))) prettify-symbols-alist)
+  (push (cons "\\Q" (cdr (assoc "\\mathbb{Q}" prettify-symbols-alist))) prettify-symbols-alist)
   (when (not (string= (font-get doom-font :family) "PragmataPro"))
     (dotimes (l 26)
       ;; mathcal -> bold-italic math script
-      (add-to-list 'tex--prettify-symbols-alist (cons (concat "\\mathcal{" (byte-to-string (+ ?A l)) "}") (+ 120380 l))))
+      (add-to-list 'prettify-symbols-alist (cons (concat "\\mathcal{" (byte-to-string (+ ?A l)) "}") (+ 120380 l))))
     )
   (dotimes (l 26)
     ;; mathscr -> mathcal
     (let* ((letter (byte-to-string (+ ?A l)))
            (cal (concat "\\mathcal{" letter "}"))
            (scr (concat "\\mathscr{" letter "}")))
-      (add-to-list 'tex--prettify-symbols-alist (cons scr (cdr (assoc cal tex--prettify-symbols-alist))))
+      (add-to-list 'prettify-symbols-alist (cons scr (cdr (assoc cal prettify-symbols-alist))))
       ))
   (prettify-symbols-mode t)
   )
@@ -422,10 +435,10 @@ Everyone must know, of course.
 
 *** perfect-margin
 #+begin_src emacs-lisp
-(use-package! perfect-margin
-  :config
-  (after! doom-modeline
-    (setq mode-line-right-align-edge 'right-fringe))
-  ;; (setq perfect-margin-only-set-left-margin t)
-  (perfect-margin-mode t))
+;; (use-package! perfect-margin
+;;   :config
+;;   (after! doom-modeline
+;;     (setq mode-line-right-align-edge 'right-fringe))
+;;   ;; (setq perfect-margin-only-set-left-margin t)
+;;   (perfect-margin-mode t))
 #+end_src
