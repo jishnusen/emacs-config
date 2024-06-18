@@ -148,6 +148,7 @@ I try to use magit to interface with git. But, since my dotfiles are cloned as a
   (push (cons "\\N" (cdr (assoc "\\mathbb{N}" prettify-symbols-alist))) prettify-symbols-alist)
   (push (cons "\\R" (cdr (assoc "\\mathbb{R}" prettify-symbols-alist))) prettify-symbols-alist)
   (push (cons "\\Q" (cdr (assoc "\\mathbb{Q}" prettify-symbols-alist))) prettify-symbols-alist)
+  (push (cons "\\C" "ℂ") prettify-symbols-alist)
   (when (not (string= (font-get doom-font :family) "PragmataPro"))
     (dotimes (l 26)
       ;; mathcal -> bold-italic math script

@@ -1,4 +1,4 @@
-personal_ws-1.1 en 38
+personal_ws-1.1 en 40
 antiderivative
 bezout
 bijection
@@ -18,11 +18,13 @@ integrability
 integrable
 irreducibility
 irreducibles
+isometry
 jishnu
 keybinds
 magit
 nilpotent
 nim
+pointwise
 preimage
 qubit
 qubits
